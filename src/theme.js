@@ -4,6 +4,7 @@ const font = 'sans-serif'
 
 // Color palette
 const black = '#000000'
+const gray = '#434343'
 const white = '#ffffff'
 const error = '#c86464'
 const primary = '#c06c84'
@@ -51,6 +52,7 @@ export default {
     secondary,
     secondaryLight,
     black,
+    gray,
     white,
     error,
   },
