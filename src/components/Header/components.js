@@ -7,7 +7,7 @@ export const HeaderComponent = styled.div`
   background-color: ${({ theme }) => theme.colors.gray};
   color: ${({ theme }) => theme.colors.white};
   max-width: 1920px;
-  width: 100%;
+  
   height: 80px;
   padding: 32px;
   font-size: 32px;

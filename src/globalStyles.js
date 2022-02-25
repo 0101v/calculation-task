@@ -7,7 +7,7 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+    max-width: 1920px;
     font-family: ${theme.font};
   
   }
@@ -35,5 +35,7 @@ export default createGlobalStyle`
 
   #root {
     
+    
+
   }
 `
