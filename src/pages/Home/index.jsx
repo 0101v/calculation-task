@@ -1,18 +1,10 @@
 import React from 'react'
 
-import { PageLayout } from '@/layouts'
-
-import Loader from '@/components/Loader'
-
-import { Card, Heading } from './components'
+// import { PageLayout } from '@/layouts'
+import { Calculator } from '@/containers/Calculator'
 
 export default () => {
   return (
-    <PageLayout>
-      <Card>
-        <Heading id="welcome">Welcome!</Heading>
-        <Loader />
-      </Card>
-    </PageLayout>
+      <Calculator/>      
   )
 }
