@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 
 import { KeypadComponent, Button } from './components'
 import { BTN } from '@/constants/btn'
-import { addNumber, addOperation } from '@/actions'
+import { addNumber, addOperation, resultExpression, clearAll, clearLast } from '@/actions'
 
 export default () => {
   const dispatch = useDispatch()
@@ -20,17 +20,17 @@ export default () => {
       case ('-'):
       case ('+'):
       case ('*'):
-      case ('\\'):
-        
+      case ('/'):
+        dispatch(addOperation(elemBtn))
         break
       case ('='):
-        
+        dispatch(resultExpression())
         break
       case ('C'):
-        
+        dispatch(clearAll())
         break
       case ('CE'):
-        
+        dispatch(clearLast())
         break
       case ('('):
       case (')'):
