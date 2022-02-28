@@ -1,5 +1,7 @@
-import { handleActions } from 'redux-actions'
+// import { combineReducers } from 'redux'
 
-const INITIAL_STATE = {}
+// import example from '.'
 
-export default handleActions({}, INITIAL_STATE)
+// export const rootReducer = combineReducers({
+//   example,
+// })
