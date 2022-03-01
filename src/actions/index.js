@@ -1,6 +1,10 @@
 
 export const ADD_NUMBER = 'ADD_NUMBER'
 export const ADD_OPERATION = 'ADD_OPERATION'
+export const ADD_DOT = 'ADD_DOT'
+export const ADD_LEFT_BRACKET = 'ADD_LEFT_BRACKET'
+export const ADD_RIGHT_BRACKET = 'ADD_RIGHT_BRACKET'
+
 export const RESULT_EXPRESSION = 'RESULT_EXPRESSION'
 
 export const CLEAR_HISTORY = 'CLEAR_HISTORY'
@@ -14,6 +18,15 @@ export const addNumber = payload => ({
 export const addOperation = payload => ({
   type: ADD_OPERATION,
   payload,
+})
+export const addDot = () => ({
+  type: ADD_DOT,
+})
+export const addLeftBracket = () => ({
+  type: ADD_LEFT_BRACKET,
+})
+export const addRightBracket = () => ({
+  type: ADD_RIGHT_BRACKET,
 })
 export const resultExpression = () => ({
   type: RESULT_EXPRESSION,

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 
 import { KeypadComponent, Button } from './components'
 import { BTN } from '@/constants/btn'
-import { addNumber, addOperation, resultExpression, clearAll, clearLast } from '@/actions'
+import { addNumber, addOperation, addDot, addLeftBracket, addRightBracket, resultExpression, clearAll, clearLast } from '@/actions'
 
 export default () => {
   const dispatch = useDispatch()
@@ -33,15 +33,16 @@ export default () => {
         dispatch(clearLast())
         break
       case ('('):
-      case (')'):
-        
+        dispatch(addLeftBracket())
         break
-
+      case (')'):
+        dispatch(addRightBracket())
+        break
       case ('.'):
-        
+        dispatch(addDot())
         break
       default:
-        
+    
         break
     }
   }
