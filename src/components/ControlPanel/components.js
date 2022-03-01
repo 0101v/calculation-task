@@ -26,5 +26,4 @@ export const ClearButton = styled.button`
   border-radius: 2px;
   font-size: 18px;
   text-align: left;
-  
 `

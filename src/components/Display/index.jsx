@@ -1,11 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 import { DisplayComponent, Result } from './components'
 
 export default () => {
+  const {expression} = useSelector(store => store)
   return (
     <DisplayComponent>
-      <Result>123</Result>
+      <Result>{expression}</Result>
     </DisplayComponent>      
   )
 }

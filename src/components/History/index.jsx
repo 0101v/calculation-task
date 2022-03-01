@@ -1,15 +1,16 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 import { HistoryComponent, Title, HistoryContainer, HistoryItem } from './components'
 
 export default () => {
-  const arr = [...'12345673454534567658']
+  const {history} = useSelector(store => store)
 
   return (
     <HistoryComponent>
       <Title>History</Title>
       <HistoryContainer>
-        {arr.map((el, ind) => (
+        {history.map((el, ind) => (
           <HistoryItem key={ind}>{el}</HistoryItem>
         ))}
       </HistoryContainer>

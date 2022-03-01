@@ -1,8 +1,11 @@
 import React from 'react'
-
+import { useDispatch } from 'react-redux'
+ 
+import { clearHistory } from '@/actions'
 import { ControlPanelComponent, ThemeSelect, ThemeChange, ClearButton } from './components'
 
 export default () => {
+  const dispatch = useDispatch()
   return (
     <ControlPanelComponent>
       Switch Theme
@@ -17,7 +20,7 @@ export default () => {
           Dark Theme
         </ThemeChange>
       </ThemeSelect>
-      <ClearButton>
+      <ClearButton onClick={() => dispatch(clearHistory())}>
         Clear All History
       </ClearButton>
     </ControlPanelComponent>      
