@@ -6,7 +6,6 @@ export const HeaderComponent = styled.div`
   align-items: center;
   background-color: ${({ theme }) => theme.colors.gray};
   color: ${({ theme }) => theme.colors.white};
-  max-width: 1920px;
   
   height: 80px;
   padding: 32px;
@@ -22,8 +21,7 @@ export const Links = styled.div`
 
   & .active {
     cursor: pointer;
-    color: ${({ theme }) => theme.colors.white};
-    
-}
+    text-decoration: underline;
+  }
   
 `

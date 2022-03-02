@@ -21,7 +21,7 @@ export default () => {
         </ThemeChange>
       </ThemeSelect>
       <ClearButton onClick={() => dispatch(clearHistory())}>
-        Clear All History
+        <p>Clear All History</p>
       </ClearButton>
     </ControlPanelComponent>      
   )

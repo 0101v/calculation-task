@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 
 export const HistoryComponent = styled.div`
-  width: 20%;
+  width: 250px;
   margin: 20px 15px 0 0;
   border-left: 2px solid #707070;
 `

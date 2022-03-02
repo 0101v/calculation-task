@@ -13,6 +13,9 @@ const INITIAL_STATE = {
 
 const addNumberFunction = (state, {payload}) => {
   const {expression} = state
+  const lastOperation = expression[expression.length - 1]
+
+  if (payload === '0' && lastOperation === ' ') return state
   if (expression.length === 1 && expression[0] === '0') {
     return {...state, expression: payload}
   }
@@ -23,7 +26,7 @@ const addOperationFunction = (state, {payload}) => {
   const {expression} = state
   const lastOperation = expression[expression.length - 1]
   if (lastOperation === ' ') {
-    return {...state, expression: expression.slice(0, expression.indexOf(' ')) + ` ${payload} `}
+    return {...state, expression: expression.slice(0, expression.lastIndexOf(' ') - 1) + ` ${payload} `}
   }
   return {...state, expression: state.expression + ` ${payload} `}
 }
@@ -75,7 +78,7 @@ const resultFunction = state => {
 
   if (expression.indexOf(' ') === -1 || expression[expression.length - 1] === ' ') return state
   // if (Number.isNaN(+expression) && expression[expression.length - 1] === ' ') expression += expression.slice(0, expression.indexOf(' '))
-  let result = eval(expression) + ''
+  let result = new Function('return ' + expression)() + ''
   result = result.slice(0, result.indexOf('.') + 4)
   const historyExpression = `${expression} = ${result}`
 

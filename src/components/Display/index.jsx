@@ -5,6 +5,7 @@ import { DisplayComponent, Result } from './components'
 
 export default () => {
   const {expression} = useSelector(store => store)
+  
   return (
     <DisplayComponent>
       <Result>{expression}</Result>

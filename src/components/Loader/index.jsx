@@ -4,7 +4,7 @@ import theme from '@/theme'
 
 import { Loader } from './components'
 
-const LOADER_SIZE = 100
+const LOADER_SIZE = 1
 
 export default () => {
   return (
