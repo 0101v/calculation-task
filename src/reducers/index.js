@@ -6,6 +6,8 @@ import {
   CLEAR_HISTORY, CLEAR_ALL, CLEAR_LAST_VALUE_AND_EXPRESSION,
   } from '@/actions'
 
+import resultCalculatorFunction from '@/helpers/calculator'
+
 const INITIAL_STATE = {
   expression: '0',
   history: [],
@@ -15,7 +17,9 @@ const addNumberFunction = (state, {payload}) => {
   const {expression} = state
   const lastOperation = expression[expression.length - 1]
 
-  if (payload === '0' && lastOperation === ' ') return state
+  if (payload === '0' && lastOperation === ' ') {
+    return {...state, expression: state.expression + '0.'}
+  }
   if (expression.length === 1 && expression[0] === '0') {
     return {...state, expression: payload}
   }
@@ -78,7 +82,8 @@ const resultFunction = state => {
 
   if (expression.indexOf(' ') === -1 || expression[expression.length - 1] === ' ') return state
   // if (Number.isNaN(+expression) && expression[expression.length - 1] === ' ') expression += expression.slice(0, expression.indexOf(' '))
-  let result = new Function('return ' + expression)() + ''
+  // let result = new Function('return ' + expression)() + ''
+  let result = resultCalculatorFunction(expression) + ''
   result = result.slice(0, result.indexOf('.') + 4)
   const historyExpression = `${expression} = ${result}`
 

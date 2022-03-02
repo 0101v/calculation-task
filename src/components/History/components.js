@@ -19,7 +19,7 @@ export const HistoryContainer = styled.div`
   overflow-y: scroll;
   overflow-x: hidden;
   max-height: 600px;
-  height: 100%;
+  
   ::-webkit-scrollbar {
     width: 11px;
   }

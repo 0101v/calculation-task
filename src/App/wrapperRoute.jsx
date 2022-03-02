@@ -7,10 +7,7 @@ const HomePage = lazy(() => import('@/pages/Home'))
 const SettingsPage = lazy(() => import('@/pages/Settings'))
 
  const WrapperRoute = () => (
-  <React.Fragment>
-    <Switch>
-
-
+  <Switch>
     <Route
       exact
       path={HOME_PAGE_ROUTE}
@@ -21,9 +18,6 @@ const SettingsPage = lazy(() => import('@/pages/Settings'))
       component={SettingsPage}
     />
     <Redirect to={HOME_PAGE_ROUTE} />
-
-
-    </Switch>
-  </React.Fragment>
+  </Switch>
 )
 export default WrapperRoute
