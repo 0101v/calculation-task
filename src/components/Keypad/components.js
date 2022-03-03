@@ -9,6 +9,11 @@ export const KeypadComponent = styled.div`
   grid-row-gap: 30px;
   margin: 28px;
   justify-content: center;
+
+  @media (max-width: 1100px) {
+    grid-template-columns: repeat(5, 70px);
+    grid-column-gap: 50px;
+  }
 `
 export const Button = styled.button`
   font-size: 62px;
@@ -22,5 +27,9 @@ export const Button = styled.button`
   &:hover {
     background-color: #aaa7a7;
     border: 1px solid #505050;
+  }
+  @media (max-width: 1100px) {
+    font-size: 32px;
+    height: 70px;
   }
 `

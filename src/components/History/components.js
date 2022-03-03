@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 
 export const HistoryComponent = styled.div`
-  width: 20%;
+  width: 250px;
   margin: 20px 15px 0 0;
   border-left: 2px solid #707070;
 `
@@ -19,7 +19,7 @@ export const HistoryContainer = styled.div`
   overflow-y: scroll;
   overflow-x: hidden;
   max-height: 600px;
-  height: 100%;
+  
   ::-webkit-scrollbar {
     width: 11px;
   }
