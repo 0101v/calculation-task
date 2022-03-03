@@ -24,6 +24,7 @@ export const Button = styled.button`
   opacity: 1;
   user-select: none;
   cursor: pointer;
+  color: ${({ theme }) => theme.BUTTON_COLOR};
   &:hover {
     background-color: #aaa7a7;
     border: 1px solid #505050;

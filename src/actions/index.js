@@ -11,6 +11,8 @@ export const CLEAR_HISTORY = 'CLEAR_HISTORY'
 export const CLEAR_ALL = 'CLEAR_ALL'
 export const CLEAR_LAST_VALUE_AND_EXPRESSION = 'CLEAR_LAST_VALUE_AND_EXPRESSION'
 
+export const CHANGE_THEME = 'CHANGE_THEME'
+
 export const addNumber = payload => ({
   type: ADD_NUMBER,
   payload,
@@ -40,4 +42,7 @@ export const clearAll = () => ({
 export const clearLast = () => ({
   type: CLEAR_LAST_VALUE_AND_EXPRESSION,
 })
-
+export const changeTheme = payload => ({
+  type: CHANGE_THEME,
+  payload,
+})

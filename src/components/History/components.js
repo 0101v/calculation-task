@@ -9,12 +9,13 @@ export const HistoryComponent = styled.div`
 export const Title = styled.h2`
   text-align: center;
   letter-spacing: 0px;
-  color: #000000;
+  color: ${({ theme }) => theme.TEXT_COLOR};
   opacity: 1;
   
   font-weight: 400;
 `
 export const HistoryContainer = styled.div`
+  color: ${({ theme }) => theme.BUTTON_COLOR};
   padding: 35px;
   overflow-y: scroll;
   overflow-x: hidden;

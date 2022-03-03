@@ -4,6 +4,7 @@ import {
   ADD_NUMBER, ADD_OPERATION, ADD_DOT, ADD_LEFT_BRACKET, ADD_RIGHT_BRACKET,
   RESULT_EXPRESSION, 
   CLEAR_HISTORY, CLEAR_ALL, CLEAR_LAST_VALUE_AND_EXPRESSION,
+  CHANGE_THEME,
   } from '@/actions'
 
 import resultCalculatorFunction from '@/helpers/calculator'
@@ -11,6 +12,7 @@ import resultCalculatorFunction from '@/helpers/calculator'
 const INITIAL_STATE = {
   expression: '0',
   history: [],
+  selectedStyle: 'dark',
 }
 
 const addNumberFunction = (state, {payload}) => {
@@ -29,6 +31,8 @@ const addNumberFunction = (state, {payload}) => {
 const addOperationFunction = (state, {payload}) => {
   const {expression} = state
   const lastOperation = expression[expression.length - 1]
+
+  if (expression[expression.length - 2] === '(') return state
   if (lastOperation === ' ') {
     return {...state, expression: expression.slice(0, expression.lastIndexOf(' ') - 1) + ` ${payload} `}
   }
@@ -84,7 +88,7 @@ const resultFunction = state => {
   // if (Number.isNaN(+expression) && expression[expression.length - 1] === ' ') expression += expression.slice(0, expression.indexOf(' '))
   // let result = new Function('return ' + expression)() + ''
   let result = resultCalculatorFunction(expression) + ''
-  result = result.slice(0, result.indexOf('.') + 4)
+  if (result.indexOf('.') !== -1) result = result.slice(0, result.indexOf('.') + 4)
   const historyExpression = `${expression} = ${result}`
 
   return {...state, expression: result, history: [...state.history, historyExpression]}
@@ -92,11 +96,15 @@ const resultFunction = state => {
 
 const clearLastOperationFunction = state => {
   let {expression} = state
-  
+  const lastOperation = expression[expression.length - 1]
+
+  if (lastOperation === '.' && expression[expression.length - 3] === " ") {
+    return {...state, expression: expression.slice(0, expression.length - 2)}
+  }
   if (expression.length === 1) return {...state, expression: '0'}
-  if (expression[expression.length - 1] === ' ') {
+  if (lastOperation === ' ') {
     expression = expression.slice(0, expression.length - 2)
-    if (expression[expression.length - 1] === ' ') {
+    if (lastOperation === ' ') {
       return {...state, expression: expression.slice(0, expression.length - 1)}
     }
   }
@@ -124,6 +132,8 @@ const calculatorReducer = (state = INITIAL_STATE, action) => {
       return clearLastOperationFunction(state)
     case CLEAR_HISTORY:
       return {...state, history: []}
+    case CHANGE_THEME:
+      return {...state, selectedStyle: action.payload}
     default: 
       return state 
   }
