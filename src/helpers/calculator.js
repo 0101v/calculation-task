@@ -3,13 +3,10 @@ const mathSwitch = expression => {
   switch (expression[1]) {
     case '+':
       return Number(expression[0]) + Number(expression[2])
-
     case '-':
       return Number(expression[0]) - Number(expression[2])
-
     case '*':
       return expression[0] * expression[2]
-
     case '/':
       return expression[0] / expression[2]
       default:
@@ -18,11 +15,11 @@ const mathSwitch = expression => {
 }
 
 const resultCalculatorFunction = expression => {
-  
+
   if (expression.split(/[\(-\)]/).length > 2) {
     let arr = expression.split(/[\(-\)]/)
-    while (arr.length > 2) {
-      arr[1] = `${math(arr[1])}`
+    while (arr.length > 2 ) {
+      if (arr[1].split(' ').length === 3) arr[1] = `${math(arr[1])}`
       arr = arr.join('').split(/[\(-\)]/)
     }
     arr = arr.join('')
@@ -33,10 +30,9 @@ const resultCalculatorFunction = expression => {
   return math(expression)
 }
 
-
 const math = expression => {
   let arr = expression.split(' ').filter(el => el !== '')
-
+  
   while (arr.indexOf('*') + 1 || arr.indexOf('/') + 1 ) { 
     const indA = arr.indexOf('*') >= 0 ? arr.indexOf('*') : null
     const indB = arr.indexOf('/') >= 0 ? arr.indexOf('/') : null
@@ -64,5 +60,4 @@ const math = expression => {
     }
   }
 }
-
 export default resultCalculatorFunction

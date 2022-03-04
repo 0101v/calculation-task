@@ -8,7 +8,7 @@ export const DisplayComponent = styled.div`
   height: 120px;
   margin-left: 32px;
   margin-right: 23px;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.BUTTON_COLOR};
   border-bottom: 2px solid #707070;
 `
 export const Result = styled.div`

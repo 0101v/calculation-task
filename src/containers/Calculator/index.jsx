@@ -4,15 +4,18 @@ import { CalculatorComponent, Content } from './components'
 import Display from '@/components/Display'
 import Keypad from '@/components/Keypad'
 import History from '@/components/History'
+import ErrorBoundary from '@/ErrorBoundary'
 
 export const Calculator = () => {
   return (
     <CalculatorComponent>
       <Content>
         <Display />
-        <Keypad />
+        <Keypad />        
       </Content>
-      <History />
+      <ErrorBoundary>
+        <History />
+      </ErrorBoundary>
     </CalculatorComponent>
   )
 }

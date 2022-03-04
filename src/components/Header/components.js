@@ -4,8 +4,8 @@ export const HeaderComponent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.gray};
-  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({theme}) => theme.BACKGROUND_COLOR};
+  color: ${({ theme }) => theme.TEXT_COLOR};
   
   height: 80px;
   padding: 32px;
@@ -14,7 +14,7 @@ export const HeaderComponent = styled.div`
 export const Links = styled.div`
   & a {
     text-decoration: none;
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.TEXT_COLOR};
     margin-left: 32px;
     
   }

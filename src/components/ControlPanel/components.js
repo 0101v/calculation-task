@@ -4,6 +4,9 @@ import styled from 'styled-components'
 export const ControlPanelComponent = styled.div`
   display: flex;
   flex-direction: column;
+  p {
+    color: ${({ theme }) => theme.BUTTON_COLOR};
+  }
 `
 export const ThemeSelect = styled.select`
   cursor: pointer;
@@ -13,6 +16,7 @@ export const ThemeSelect = styled.select`
   border-radius: 5px;
   border: 1px solid #434343;
   font-size: 18px;
+  color: ${({ theme }) => theme.BUTTON_COLOR};
 `
 export const ThemeChange = styled.option`
   cursor: pointer;
@@ -32,6 +36,7 @@ export const ClearButton = styled.button`
     border: 1px solid #505050;
   }
   p {
+    color: ${({ theme }) => theme.BUTTON_COLOR};
     margin-left: 3px;
   }
 `
