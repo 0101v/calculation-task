@@ -96,7 +96,7 @@ const resultFunction = state => {
   
   if (result.indexOf('.') !== -1) {
     result = (+result).toFixed(3) + ''
-    // remove zeros to end
+    // to remove zeros in end result
     let boollean = false
     result = [...result]
       .reverse()
@@ -106,6 +106,7 @@ const resultFunction = state => {
       })
       .reverse()
       .join('')
+    if (result.length === 0) result += '0'
   }
   
   const historyExpression = `${expression} = ${result}`
