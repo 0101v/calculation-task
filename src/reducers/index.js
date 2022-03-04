@@ -8,6 +8,7 @@ import {
   } from '@/actions'
 
 import resultCalculatorFunction from '@/helpers/calculator'
+import { join } from 'redux-saga/effects'
 
 const INITIAL_STATE = {
   expression: '0',
@@ -92,7 +93,21 @@ const resultFunction = state => {
   // if (Number.isNaN(+expression) && expression[expression.length - 1] === ' ') expression += expression.slice(0, expression.indexOf(' '))
   // let result = new Function('return ' + expression)() + ''
   let result = resultCalculatorFunction(expression) + ''
-  if (result.indexOf('.') !== -1) result = result.slice(0, result.indexOf('.') + 4)
+  
+  if (result.indexOf('.') !== -1) {
+    result = (+result).toFixed(3) + ''
+    // remove zeros to end
+    let boollean = false
+    result = [...result]
+      .reverse()
+      .map(el => {
+        if (el > 0 ) boollean = true
+        if (boollean) return el
+      })
+      .reverse()
+      .join('')
+  }
+  
   const historyExpression = `${expression} = ${result}`
 
   return {...state, expression: result, history: [...state.history, historyExpression]}
