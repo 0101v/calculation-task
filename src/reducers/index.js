@@ -19,8 +19,8 @@ const addNumberFunction = (state, {payload}) => {
   const {expression} = state
   const lastOperation = expression[expression.length - 1]
 
-  if (payload === '0' && lastOperation === ' ') {
-    return {...state, expression: state.expression + '0.'}
+  if (lastOperation === '0' && expression[expression.length - 2] === ' ') {
+    return {...state, expression: state.expression.slice(0, expression.length - 1) + payload}
   }
   if (expression.length === 1 && expression[0] === '0') {
     return {...state, expression: payload}
@@ -83,6 +83,10 @@ const addRightBracketFunction = state => {
 
 const resultFunction = state => {
   const {expression} = state
+  const leftBracketLength = [...expression].filter(el => el === '(').length
+  const rightBracketLength = [...expression].filter(el => el === ')').length
+
+  if (leftBracketLength !== rightBracketLength) return state
 
   if (expression.indexOf(' ') === -1 || expression[expression.length - 1] === ' ') return state
   // if (Number.isNaN(+expression) && expression[expression.length - 1] === ' ') expression += expression.slice(0, expression.indexOf(' '))
@@ -98,6 +102,9 @@ const clearLastOperationFunction = state => {
   let {expression} = state
   const lastOperation = expression[expression.length - 1]
 
+  if (lastOperation === ' ' && expression[expression.length - 2] === "(") {
+    return {...state, expression: expression.slice(0, expression.length - 2)}
+  }
   if (lastOperation === '.' && expression[expression.length - 3] === " ") {
     return {...state, expression: expression.slice(0, expression.length - 2)}
   }
