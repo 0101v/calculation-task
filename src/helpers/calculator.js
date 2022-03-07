@@ -18,8 +18,8 @@ const resultCalculatorFunction = expression => {
 
   if (expression.split(/[\(-\)]/).length > 2) {
     let arr = expression.split(/[\(-\)]/)
-    while (arr.length > 1 ) {
-      if (arr[1].split(' ').length === 3) arr[1] = `${math(arr[1])}`
+    while (arr.length > 2 ) {
+      if (arr[1].split(' ').length >= 3) arr[1] = `${math(arr[1])}`
       arr = arr.join('').split(/[\(-\)]/)
     }
     arr = arr.join('')
