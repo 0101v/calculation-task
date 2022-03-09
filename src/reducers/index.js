@@ -8,6 +8,7 @@ import {
   } from '@/actions'
 
 import resultCalculatorFunction from '@/helpers/calculator'
+import { join } from 'redux-saga/effects'
 
 const INITIAL_STATE = {
   expression: '0',
@@ -19,8 +20,8 @@ const addNumberFunction = (state, {payload}) => {
   const {expression} = state
   const lastOperation = expression[expression.length - 1]
 
-  if (payload === '0' && lastOperation === ' ') {
-    return {...state, expression: state.expression + '0.'}
+  if (lastOperation === '0' && expression[expression.length - 2] === ' ') {
+    return {...state, expression: state.expression.slice(0, expression.length - 1) + payload}
   }
   if (expression.length === 1 && expression[0] === '0') {
     return {...state, expression: payload}
@@ -83,12 +84,31 @@ const addRightBracketFunction = state => {
 
 const resultFunction = state => {
   const {expression} = state
+  const leftBracketLength = [...expression].filter(el => el === '(').length
+  const rightBracketLength = [...expression].filter(el => el === ')').length
+
+  if (leftBracketLength !== rightBracketLength) return state
 
   if (expression.indexOf(' ') === -1 || expression[expression.length - 1] === ' ') return state
   // if (Number.isNaN(+expression) && expression[expression.length - 1] === ' ') expression += expression.slice(0, expression.indexOf(' '))
   // let result = new Function('return ' + expression)() + ''
   let result = resultCalculatorFunction(expression) + ''
-  if (result.indexOf('.') !== -1) result = result.slice(0, result.indexOf('.') + 4)
+  
+  if (result.indexOf('.') !== -1) {
+    result = (+result).toFixed(3) + ''
+    // to remove zeros in end result
+    let boollean = false
+    result = [...result]
+      .reverse()
+      .map(el => {
+        if (el > 0 ) boollean = true
+        if (boollean) return el
+      })
+      .reverse()
+      .join('')
+    if (result.length === 0) result += '0'
+  }
+  
   const historyExpression = `${expression} = ${result}`
 
   return {...state, expression: result, history: [...state.history, historyExpression]}
@@ -98,6 +118,9 @@ const clearLastOperationFunction = state => {
   let {expression} = state
   const lastOperation = expression[expression.length - 1]
 
+  if (lastOperation === ' ' && expression[expression.length - 2] === "(") {
+    return {...state, expression: expression.slice(0, expression.length - 2)}
+  }
   if (lastOperation === '.' && expression[expression.length - 3] === " ") {
     return {...state, expression: expression.slice(0, expression.length - 2)}
   }
