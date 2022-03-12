@@ -19,7 +19,10 @@ const INITIAL_STATE = {
 const addNumberFunction = (state, {payload}) => {
   const {expression} = state
   const lastOperation = expression[expression.length - 1]
-
+  
+  if (lastOperation === ')') {
+    return state
+  }
   if (lastOperation === '0' && expression[expression.length - 2] === ' ') {
     return {...state, expression: state.expression.slice(0, expression.length - 1) + payload}
   }
